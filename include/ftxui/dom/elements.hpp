@@ -120,6 +120,7 @@ Element color(const LinearGradient&, Element);
 Element bgcolor(const LinearGradient&, Element);
 Decorator focusPosition(int x, int y);
 Decorator focusPositionRelative(float x, float y);
+Decorator crosshairInvert(int x, int y);
 Element automerge(Element child);
 Decorator hyperlink(std::string_view link);
 Element hyperlink(std::string_view link, Element child);
