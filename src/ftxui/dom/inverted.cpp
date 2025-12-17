@@ -37,7 +37,7 @@ Element inverted(Element child) {
 
 // TODO TabRing
 // TODO PassiveContainer
-// TODO try this out.
+
 /// @brief Add a filter that will invert the foreground and the background
 /// colors for a given column and row.
 /// @ingroup dom
