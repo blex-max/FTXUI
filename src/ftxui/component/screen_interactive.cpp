@@ -52,11 +52,6 @@
 #include <cerrno>
 #endif
 
-// Quick exit is missing in standard CLang headers
-#if defined(__clang__) && defined(__APPLE__)
-#define quick_exit(a) exit(a)
-#endif
-
 namespace ftxui {
 
 struct ScreenInteractive::Internal {
@@ -544,8 +539,6 @@ void ScreenInteractive::Install() {
   // After uninstalling the new configuration, flush it to the terminal to
   // ensure it is fully applied:
   on_exit_functions.emplace([] { Flush(); });
-
-  on_exit_functions.emplace([this] { ExitLoopClosure()(); });
 
   // Request the terminal to report the current cursor shape. We will restore it
   // on exit.
@@ -1054,7 +1047,7 @@ void ScreenInteractive::Signal(int signal) {
   }
 
   if (signal == SIGWINCH) {
-    Post(Event::Special(std::string({0})));
+    Post(Event::Special({0}));
     return;
   }
 #endif
